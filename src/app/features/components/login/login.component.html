@@ -1,0 +1,67 @@
+<h1 class=" text-center mb-4 p-8 text-4xl font-extrabold leading-none tracking-tight text-gray-900 md:text-xl lg:text-4xl dark:text-white">Login Now:</h1>
+
+
+
+
+<form [formGroup]="loginForm" (ngSubmit)=" login(loginForm)" class="max-w-sm mx-auto">
+
+    @if (isErrorMsg) {
+        <div class="p-4 mb-4 my-2 text-sm text-red-800 rounded-lg bg-red-50 dark:bg-gray-800 dark:text-red-400" role="alert">
+            <span class="font-medium"> Incorrect Email or Password </span>
+        </div>
+    }
+
+    <div class="mb-5">
+    <label for="email" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Your Email</label>
+        <input type="email"
+        formControlName="email"
+    class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"/>
+
+    @if (loginForm.get('email')?.touched && loginForm.get('email')?.hasError('required')) {
+        <div class="p-4 mb-4 my-2 text-sm text-red-800 rounded-lg bg-red-50 dark:bg-gray-800 dark:text-red-400" role="alert">
+            <span class="font-medium"> Please Write Email </span>
+        </div>
+    }
+
+    @if (loginForm.get('email')?.touched && loginForm.get('email')?.hasError('email')) {
+        <div class="p-4 mb-4 my-2 text-sm text-red-800 rounded-lg bg-red-50 dark:bg-gray-800 dark:text-red-400" role="alert">
+            <span class="font-medium"> Please Write Correct Email </span>
+        </div>
+    }
+
+</div>
+<div class="mb-5">
+    <label for="password" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Your Password</label>
+        <input type="password"
+        formControlName="password"
+    class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"/>
+
+    @if (loginForm.get('password')?.touched && loginForm.get('password')?.hasError('required')) {
+        <div class="p-4 mb-4 my-2 text-sm text-red-800 rounded-lg bg-red-50 dark:bg-gray-800 dark:text-red-400" role="alert">
+            <span class="font-medium"> Please Write Password </span>
+        </div>
+    }
+
+    @if (loginForm.get('password')?.touched && loginForm.get('password')?.hasError('pattern')) {
+        <div class="p-4 mb-4 my-2 text-sm text-red-800 rounded-lg bg-red-50 dark:bg-gray-800 dark:text-red-400" role="alert">
+            <p class="font-medium"> *Please Start With Capital Letter <br>
+                                        *At least 6 <br>
+                                        *Maximum 15
+            </p>
+        </div>
+    }
+
+    <a [routerLink]="['/forgetpassword']" routerLinkActive="router-link-active"  href="" class="p-2 text-xl">Forget Your Password ?</a>
+
+
+</div>
+@if (isLoading) {
+    <button type="submit"
+    class="text-white bg-main hover:bg-main focus:ring-4 focus:outline-none focus:border-main font-medium rounded-lg text-sm w-full sm:w-auto px-5 py-2.5 text-center dark:bg-main dark:hover:bg-main dark:focus:border-main"><i class="fas fa-spinner fa-spin"></i></button>
+}@else 
+{<button type="submit"
+class="text-white bg-main hover:bg-main focus:ring-4 focus:outline-none focus:border-main font-medium rounded-lg text-sm w-full sm:w-auto px-5 py-2.5 text-center dark:bg-main dark:hover:bg-main dark:focus:border-main">Login</button>
+}
+
+</form> 
+

@@ -1,0 +1,17 @@
+<h1 class="text-center mt-5 text-main">All Brands</h1>
+
+<div class="flex flex-wrap justify-center mt-5">
+
+@for (b of allBrands; track $index) {
+
+    <div class="product w-3/12 p-4 text-center ">
+        <img [src]="b.image" alt="" class="w-full">
+        <h3>{{b.name}}</h3>
+    </div>
+
+}@empty {
+    <app-loader></app-loader>
+}
+
+</div>
+

@@ -1,0 +1,13 @@
+<div class="container mx-auto">
+<div class="flex flex-wrap justify-center items-center text-center">
+<div class="md:w-4/12">
+    <img [src]="productdetails.imageCover" alt="" class="w-full">
+</div>
+<div class="md:w-8/12">
+<h1>{{productdetails.title}}</h1>
+<p>{{productdetails.description}}</p>
+<p>{{productdetails.price}}</p>
+<button (click)="addToCart(productdetails.id)" class="btn bg-main p-2 rounded mt-2 text-white w-full" >add to cart</button>
+</div>
+</div>
+</div>

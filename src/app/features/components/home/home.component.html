@@ -1,0 +1,49 @@
+
+<div class="flex flex-wrap justify-center mt-5">
+
+    <owl-carousel-o [options]="customOptions" class="w-full">
+@for (c of allCategories ; track $index) {
+    <ng-container>
+        <ng-template carouselSlide [id]="c.name">
+        <img [src]="c.image" [alt]="c.name" class="h-[200px]">
+        <p class="text-center">{{c.name}}</p>
+        </ng-template>
+    </ng-container>
+}
+    
+    
+    </owl-carousel-o>
+
+    
+    <label for="default-search" class="mb-2 text-sm font-medium text-gray-900 sr-only dark:text-white">Search</label>
+    <div class="relative w-full m-3">
+        <div class="absolute inset-y-0 start-0 flex items-center ps-3 pointer-events-none">
+            <svg class="w-4 h-4 text-gray-500 dark:text-gray-400" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 20 20">
+                <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m19 19-4-4m0-7A7 7 0 1 1 1 8a7 7 0 0 1 14 0Z"/>
+            </svg>
+        </div>
+        <input type="search" id="default-search" class="block w-full p-4 ps-10 text-sm text-gray-900 border border-gray-300 rounded-lg bg-gray-50 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="Search Products ..." required  [(ngModel)]="searchValue"/>
+    </div>
+
+
+
+@for (p of allProducts|search:searchValue; track $index) {
+
+    <div class="product w-2/12 p-4 text-center ">
+        <img [src]="p.imageCover" alt="" class="w-full" [routerLink]="['/single',p._id]">
+        <h5 class="text-main">{{p.category.name}}</h5>
+        <h4>{{p.title}}</h4>
+        <div class="flex justify-between">
+            <span>{{p.price|currency:'EGP'}}</span>
+            <span>{{p.ratingsAverage}} <i class="fa-solid fa-star rating-color"></i></span>
+            <i (click)="addToWish(p.id)"  class="fa-solid fa-heart h-3"></i>
+        </div>
+        <button (click)="addToCart(p.id)" class="btn bg-main p-2 rounded mt-2 text-white" >add to cart</button>
+    </div>
+
+}@if(isLoading) {
+    <app-loader></app-loader>
+}
+
+
+</div>
